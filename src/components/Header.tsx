@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { Menu, X, Github, Zap } from 'lucide-react'
-import Button from './ui/Button'
 import { cn } from '@/lib/utils'
 
 const navigation = [
@@ -45,12 +44,7 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:flex items-center space-x-4">
-            <Button size="md">
-              Try with Claude
-            </Button>
-          </div>
+
 
           {/* Mobile menu button */}
           <div className="md:hidden">
@@ -85,11 +79,6 @@ export default function Header() {
                 {item.name}
               </a>
             ))}
-            <div className="px-4 pt-2">
-              <Button fullWidth size="md">
-                Try with Claude
-              </Button>
-            </div>
           </div>
         </div>
       </div>
