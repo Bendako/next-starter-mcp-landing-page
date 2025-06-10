@@ -47,26 +47,7 @@ const benefits = [
   }
 ]
 
-const testimonials = [
-  {
-    quote: "This tool saved me hours on every new project. The Claude integration is game-changing for rapid prototyping.",
-    author: "Sarah Chen",
-    role: "Full Stack Developer",
-    company: "TechCorp"
-  },
-  {
-    quote: "Finally, a Next.js starter that includes everything I need. The authentication setup alone is worth it.",
-    author: "Michael Rodriguez",
-    role: "Lead Developer", 
-    company: "StartupXYZ"
-  },
-  {
-    quote: "The consistency across our team projects improved dramatically. Everyone uses the same solid foundation now.",
-    author: "Emily Johnson",
-    role: "Engineering Manager",
-    company: "InnovateInc"
-  }
-]
+
 
 export default function WhyChoose() {
   return (
@@ -192,36 +173,7 @@ export default function WhyChoose() {
           </div>
         </div>
 
-        {/* Testimonials */}
-        <div className="mb-16">
-          <div className="text-center mb-12">
-            <h3 className="text-2xl font-bold text-slate-900 mb-4">
-              Trusted by Developers Worldwide
-            </h3>
-            <p className="text-lg text-slate-600">
-              See what developers are saying about Next.js Starter MCP
-            </p>
-          </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="p-6">
-                <blockquote className="text-slate-600 mb-4">
-                  &quot;{testimonial.quote}&quot;
-                </blockquote>
-                <div className="flex items-center">
-                  <div className="w-10 h-10 bg-gradient-to-br from-primary-400 to-secondary-400 rounded-full flex items-center justify-center text-white font-medium text-sm mr-3">
-                    {testimonial.author.split(' ').map(n => n[0]).join('')}
-                  </div>
-                  <div>
-                    <div className="font-medium text-slate-900">{testimonial.author}</div>
-                    <div className="text-sm text-slate-500">{testimonial.role} at {testimonial.company}</div>
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div>
 
         {/* CTA Section */}
         <div className="text-center">
