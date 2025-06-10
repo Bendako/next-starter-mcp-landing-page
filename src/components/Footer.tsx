@@ -1,4 +1,4 @@
-import { Github, Twitter, MessageCircle, Heart, Zap } from 'lucide-react'
+import { Github, Linkedin, MessageCircle, Heart, Zap } from 'lucide-react'
 
 const footerLinks = {
   Product: [
@@ -29,7 +29,7 @@ const footerLinks = {
 
 const socialLinks = [
   { name: 'GitHub', icon: Github, href: 'https://github.com/Bendako/next-starter-mcp-landing-page' },
-  { name: 'Twitter', icon: Twitter, href: 'https://twitter.com/bendako' },
+  { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com/in/bendako' },
   { name: 'Discord', icon: MessageCircle, href: 'https://github.com/Bendako/next-starter-mcp-landing-page/discussions' }
 ]
 
