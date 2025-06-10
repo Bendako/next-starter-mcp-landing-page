@@ -114,7 +114,7 @@ Everything looks good! Ready to create projects.`
 ]
 
 export default function CodeExamples() {
-  const [activeTab, setActiveTab] = useState<'script' | 'claude'>('script')
+  const [activeTab, setActiveTab] = useState<'script' | 'claude'>('claude')
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null)
 
   const copyToClipboard = async (text: string, index: number) => {
