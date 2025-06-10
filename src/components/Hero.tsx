@@ -1,3 +1,5 @@
+'use client'
+
 import { ArrowRight, Zap, Bot, Rocket, Github } from 'lucide-react'
 import Button from './ui/Button'
 
@@ -66,7 +68,12 @@ export default function Hero() {
               Get Started with Claude
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Button>
-            <Button variant="outline" size="lg" className="group">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="group"
+              onClick={() => window.open('https://github.com/Bendako/next-starter-mcp-landing-page', '_blank')}
+            >
               <Github className="mr-2 h-5 w-5" />
               View on GitHub
             </Button>

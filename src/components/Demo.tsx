@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Play, Terminal, Check, Clock, Zap } from 'lucide-react'
+import { Play, Terminal, Check, Clock, Zap, MessageSquare, Bot } from 'lucide-react'
 import Button from './ui/Button'
 
 const terminalSteps = [
@@ -27,36 +27,91 @@ const terminalSteps = [
   { text: '🌐 Run: npm run dev', delay: 8000 },
 ]
 
-export default function Demo() {
-  const [currentStep, setCurrentStep] = useState(0)
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [displayedSteps, setDisplayedSteps] = useState<typeof terminalSteps>([])
+const claudeSteps = [
+  { text: '👤 Create a new Next.js app called "my-saas-app" with authentication and database', delay: 0, user: true },
+  { text: '', delay: 1000 },
+  { text: '🤖 I\'ll help you create a production-ready Next.js SaaS application!', delay: 1500, claude: true },
+  { text: '', delay: 2000 },
+  { text: '🤖 Let me run the Next.js Starter MCP script with the right configuration...', delay: 2500, claude: true },
+  { text: '', delay: 3000 },
+  { text: '⚡ Executing: ./create-next-starter.sh --template saas my-saas-app', delay: 3500, command: true },
+  { text: '', delay: 4000 },
+  { text: '✅ Setting up Next.js 14 with TypeScript', delay: 4500, success: true },
+  { text: '✅ Configuring Tailwind CSS with custom theme', delay: 5000, success: true },
+  { text: '✅ Installing Clerk for authentication', delay: 5500, success: true },
+  { text: '✅ Setting up Convex real-time database', delay: 6000, success: true },
+  { text: '✅ Generating SaaS-specific components', delay: 6500, success: true },
+  { text: '✅ Configuring payment integration hooks', delay: 7000, success: true },
+  { text: '', delay: 7500 },
+  { text: '🎉 Perfect! Your SaaS application is ready to go!', delay: 8000, highlight: true, claude: true },
+  { text: '', delay: 8500 },
+  { text: '🤖 You can now run `npm run dev` to start building your SaaS product.', delay: 9000, claude: true },
+]
 
+export default function Demo() {
+  const [terminalStep, setTerminalStep] = useState(0)
+  const [claudeStep, setClaudeStep] = useState(0)
+  const [isTerminalPlaying, setIsTerminalPlaying] = useState(false)
+  const [isClaudePlaying, setIsClaudePlaying] = useState(false)
+  const [terminalDisplayed, setTerminalDisplayed] = useState<typeof terminalSteps>([])
+  const [claudeDisplayed, setClaudeDisplayed] = useState<typeof claudeSteps>([])
+
+  // Terminal animation
   useEffect(() => {
-    if (!isPlaying) return
+    if (!isTerminalPlaying) return
 
     const timer = setTimeout(() => {
-      if (currentStep < terminalSteps.length) {
-        setDisplayedSteps(prev => [...prev, terminalSteps[currentStep]])
-        setCurrentStep(prev => prev + 1)
+      if (terminalStep < terminalSteps.length) {
+        setTerminalDisplayed(prev => [...prev, terminalSteps[terminalStep]])
+        setTerminalStep(prev => prev + 1)
       } else {
-        setIsPlaying(false)
+        setIsTerminalPlaying(false)
       }
-    }, terminalSteps[currentStep]?.delay || 1000)
+    }, terminalSteps[terminalStep]?.delay || 1000)
 
     return () => clearTimeout(timer)
-  }, [currentStep, isPlaying])
+  }, [terminalStep, isTerminalPlaying])
 
-  const startDemo = () => {
-    setCurrentStep(0)
-    setDisplayedSteps([])
-    setIsPlaying(true)
+  // Claude animation
+  useEffect(() => {
+    if (!isClaudePlaying) return
+
+    const timer = setTimeout(() => {
+      if (claudeStep < claudeSteps.length) {
+        setClaudeDisplayed(prev => [...prev, claudeSteps[claudeStep]])
+        setClaudeStep(prev => prev + 1)
+      } else {
+        setIsClaudePlaying(false)
+      }
+    }, claudeSteps[claudeStep]?.delay || 1000)
+
+    return () => clearTimeout(timer)
+  }, [claudeStep, isClaudePlaying])
+
+  const startTerminal = () => {
+    setTerminalStep(0)
+    setTerminalDisplayed([])
+    setIsTerminalPlaying(true)
   }
 
-  const resetDemo = () => {
-    setCurrentStep(0)
-    setDisplayedSteps([])
-    setIsPlaying(false)
+  const startClaude = () => {
+    setClaudeStep(0)
+    setClaudeDisplayed([])
+    setIsClaudePlaying(true)
+  }
+
+  const startBoth = () => {
+    startTerminal()
+    startClaude()
+  }
+
+  const resetBoth = () => {
+    setTerminalStep(0)
+    setClaudeStep(0)
+    setTerminalDisplayed([])
+    setClaudeDisplayed([])
+    setIsTerminalPlaying(false)
+    setIsClaudePlaying(false)
   }
 
   return (
@@ -68,13 +123,44 @@ export default function Demo() {
             See It In Action
           </h2>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Watch how the Next.js Starter MCP creates a complete production-ready application in seconds
+            Watch both methods create the same production-ready Next.js application. Choose your preferred workflow!
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Interactive Terminal */}
-          <div className="order-2 lg:order-1">
+        {/* Demo Controls */}
+        <div className="text-center mb-12">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Button
+              onClick={startBoth}
+              disabled={isTerminalPlaying || isClaudePlaying}
+              size="lg"
+              className="group"
+            >
+              <Play className="h-5 w-5 mr-2" />
+              Run Both Demos
+            </Button>
+            <Button
+              variant="outline"
+              onClick={resetBoth}
+              size="lg"
+            >
+              Reset Demos
+            </Button>
+          </div>
+        </div>
+
+        {/* Side by Side Demos */}
+        <div className="grid lg:grid-cols-2 gap-8 mb-16">
+          {/* Terminal Demo */}
+          <div>
+            <div className="mb-4">
+              <h3 className="text-xl font-semibold text-slate-900 mb-2 flex items-center">
+                <Terminal className="h-5 w-5 mr-2 text-slate-600" />
+                Direct Script Usage
+              </h3>
+              <p className="text-slate-600">Traditional command-line approach</p>
+            </div>
+            
             <div className="bg-slate-900 rounded-lg overflow-hidden shadow-2xl">
               {/* Terminal Header */}
               <div className="bg-slate-800 px-4 py-3 flex items-center space-x-2">
@@ -91,7 +177,7 @@ export default function Demo() {
 
               {/* Terminal Content */}
               <div className="p-6 h-96 overflow-y-auto font-mono text-sm">
-                {displayedSteps.map((step, index) => (
+                {terminalDisplayed.map((step, index) => (
                   <div
                     key={index}
                     className={`mb-2 ${
@@ -105,128 +191,131 @@ export default function Demo() {
                     }`}
                   >
                     {step.text}
-                    {index === displayedSteps.length - 1 && isPlaying && (
+                    {index === terminalDisplayed.length - 1 && isTerminalPlaying && (
                       <span className="animate-pulse">|</span>
                     )}
                   </div>
                 ))}
-                {!isPlaying && displayedSteps.length === 0 && (
+                {!isTerminalPlaying && terminalDisplayed.length === 0 && (
                   <div className="text-slate-500">
-                    Click &quot;Run Demo&quot; to see the magic happen...
+                    Click &quot;Run Both Demos&quot; to see the terminal in action...
                   </div>
                 )}
               </div>
 
-              {/* Terminal Controls */}
+              {/* Terminal Footer */}
               <div className="bg-slate-800 px-4 py-3 flex justify-between items-center">
-                <div className="flex space-x-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={startDemo}
-                    disabled={isPlaying}
-                    className="bg-slate-700 border-slate-600 text-slate-200 hover:bg-slate-600"
-                  >
-                    <Play className="h-4 w-4 mr-2" />
-                    Run Demo
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={resetDemo}
-                    className="bg-slate-700 border-slate-600 text-slate-200 hover:bg-slate-600"
-                  >
-                    Reset
-                  </Button>
-                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={startTerminal}
+                  disabled={isTerminalPlaying}
+                  className="bg-slate-700 border-slate-600 text-slate-200 hover:bg-slate-600"
+                >
+                  <Play className="h-4 w-4 mr-2" />
+                  Run Terminal
+                </Button>
                 <div className="text-slate-400 text-xs">
-                  ~{Math.max(0, terminalSteps.length - currentStep)} steps remaining
+                  Terminal Demo
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Demo Stats & Features */}
-          <div className="order-1 lg:order-2 space-y-8">
-            {/* Before vs After */}
-            <div className="bg-white rounded-lg p-6 shadow-lg">
-              <h3 className="text-xl font-semibold text-slate-900 mb-4">Before vs After</h3>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <h4 className="font-medium text-red-600 mb-2 flex items-center">
-                    <Clock className="h-4 w-4 mr-2" />
-                    Manual Setup
-                  </h4>
-                  <ul className="text-sm text-slate-600 space-y-1">
-                    <li>• 2-4 hours configuration</li>
-                    <li>• Multiple package installs</li>
-                    <li>• Complex auth setup</li>
-                    <li>• Database configuration</li>
-                    <li>• TypeScript boilerplate</li>
-                  </ul>
+          {/* Claude Desktop Demo */}
+          <div>
+            <div className="mb-4">
+              <h3 className="text-xl font-semibold text-slate-900 mb-2 flex items-center">
+                <Bot className="h-5 w-5 mr-2 text-primary-600" />
+                Claude Desktop MCP
+              </h3>
+              <p className="text-slate-600">Natural language AI-powered approach</p>
+            </div>
+            
+            <div className="bg-white rounded-lg overflow-hidden shadow-2xl border border-slate-200">
+              {/* Claude Header */}
+              <div className="bg-gradient-to-r from-primary-50 to-secondary-50 px-4 py-3 flex items-center space-x-2">
+                <div className="flex items-center space-x-2">
+                  <Bot className="h-4 w-4 text-primary-600" />
+                  <span className="text-slate-700 text-sm font-medium">Claude Desktop</span>
                 </div>
-                <div>
-                  <h4 className="font-medium text-green-600 mb-2 flex items-center">
-                    <Zap className="h-4 w-4 mr-2" />
-                    With Our Tool
-                  </h4>
-                  <ul className="text-sm text-slate-600 space-y-1">
-                    <li className="flex items-center">
-                      <Check className="h-3 w-3 text-green-500 mr-2" />
-                      2 minutes setup
-                    </li>
-                    <li className="flex items-center">
-                      <Check className="h-3 w-3 text-green-500 mr-2" />
-                      One command
-                    </li>
-                    <li className="flex items-center">
-                      <Check className="h-3 w-3 text-green-500 mr-2" />
-                      Production ready
-                    </li>
-                    <li className="flex items-center">
-                      <Check className="h-3 w-3 text-green-500 mr-2" />
-                      Best practices
-                    </li>
-                    <li className="flex items-center">
-                      <Check className="h-3 w-3 text-green-500 mr-2" />
-                      Claude integration
-                    </li>
-                  </ul>
+              </div>
+
+              {/* Claude Content */}
+              <div className="p-6 h-96 overflow-y-auto text-sm">
+                {claudeDisplayed.map((step, index) => (
+                  <div key={index} className="mb-3">
+                    {step.text && (
+                      <div className={`${
+                        step.user 
+                          ? 'bg-primary-50 text-primary-900 p-3 rounded-lg border border-primary-200' 
+                          : step.claude
+                          ? 'bg-secondary-50 text-secondary-900 p-3 rounded-lg border border-secondary-200'
+                          : step.command
+                          ? 'bg-slate-100 text-slate-800 p-2 rounded font-mono text-xs'
+                          : step.success
+                          ? 'text-green-600 flex items-center'
+                          : step.highlight
+                          ? 'text-primary-600 font-semibold'
+                          : 'text-slate-600'
+                      }`}>
+                        {step.success && <Check className="h-3 w-3 mr-2" />}
+                        {step.text}
+                        {index === claudeDisplayed.length - 1 && isClaudePlaying && (
+                          <span className="animate-pulse">|</span>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                ))}
+                {!isClaudePlaying && claudeDisplayed.length === 0 && (
+                  <div className="text-slate-500">
+                    Click &quot;Run Both Demos&quot; to see Claude Desktop in action...
+                  </div>
+                )}
+              </div>
+
+              {/* Claude Footer */}
+              <div className="bg-slate-50 px-4 py-3 flex justify-between items-center">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={startClaude}
+                  disabled={isClaudePlaying}
+                  className="border-primary-300 text-primary-700 hover:bg-primary-50"
+                >
+                  <MessageSquare className="h-4 w-4 mr-2" />
+                  Run Claude
+                </Button>
+                <div className="text-slate-500 text-xs">
+                  Claude Desktop Demo
                 </div>
               </div>
             </div>
+          </div>
+        </div>
 
-            {/* Key Statistics */}
-            <div className="bg-white rounded-lg p-6 shadow-lg">
-              <h3 className="text-xl font-semibold text-slate-900 mb-4">Key Statistics</h3>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="text-center p-4 bg-primary-50 rounded-lg">
-                  <div className="text-2xl font-bold text-primary-600">2700+</div>
-                  <div className="text-sm text-slate-600">Lines of automation</div>
-                </div>
-                <div className="text-center p-4 bg-secondary-50 rounded-lg">
-                  <div className="text-2xl font-bold text-secondary-600">5</div>
-                  <div className="text-sm text-slate-600">Ready templates</div>
-                </div>
-                <div className="text-center p-4 bg-green-50 rounded-lg">
-                  <div className="text-2xl font-bold text-green-600">98%</div>
-                  <div className="text-sm text-slate-600">Time saved</div>
-                </div>
-                <div className="text-center p-4 bg-orange-50 rounded-lg">
-                  <div className="text-2xl font-bold text-orange-600">3</div>
-                  <div className="text-sm text-slate-600">Auth options</div>
-                </div>
-              </div>
+        {/* Comparison Stats */}
+        <div className="bg-white rounded-lg p-8 shadow-lg">
+          <h3 className="text-xl font-semibold text-slate-900 mb-6 text-center">
+            Two Methods, Same Powerful Result
+          </h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+            <div>
+              <div className="text-2xl font-bold text-primary-600">2700+</div>
+              <div className="text-sm text-slate-600">Lines of automation</div>
             </div>
-
-            {/* Quick Actions */}
-            <div className="flex flex-col sm:flex-row gap-3">
-              <Button className="flex-1">
-                Try with Claude
-              </Button>
-              <Button variant="outline" className="flex-1">
-                View on GitHub
-              </Button>
+            <div>
+              <div className="text-2xl font-bold text-secondary-600">98%</div>
+              <div className="text-sm text-slate-600">Time savings</div>
+            </div>
+            <div>
+              <div className="text-2xl font-bold text-green-600">&lt; 2min</div>
+              <div className="text-sm text-slate-600">Setup time</div>
+            </div>
+            <div>
+              <div className="text-2xl font-bold text-blue-600">5</div>
+              <div className="text-sm text-slate-600">Ready templates</div>
             </div>
           </div>
         </div>

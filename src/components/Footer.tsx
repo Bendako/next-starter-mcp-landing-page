@@ -8,10 +8,10 @@ const footerLinks = {
     { name: 'Documentation', href: '#documentation' }
   ],
   Community: [
-    { name: 'GitHub', href: 'https://github.com/your-repo/nextjs-starter-mcp' },
-    { name: 'Discussions', href: 'https://github.com/your-repo/nextjs-starter-mcp/discussions' },
-    { name: 'Discord', href: 'https://discord.gg/nextjs-starter-mcp' },
-    { name: 'Contributing', href: 'https://github.com/your-repo/nextjs-starter-mcp/blob/main/CONTRIBUTING.md' }
+    { name: 'GitHub', href: 'https://github.com/Bendako/next-starter-mcp-landing-page' },
+    { name: 'Discussions', href: 'https://github.com/Bendako/next-starter-mcp-landing-page/discussions' },
+    { name: 'Issues', href: 'https://github.com/Bendako/next-starter-mcp-landing-page/issues' },
+    { name: 'Contributing', href: 'https://github.com/Bendako/next-starter-mcp-landing-page/blob/main/CONTRIBUTING.md' }
   ],
   Resources: [
     { name: 'Installation Guide', href: '#installation' },
@@ -20,7 +20,7 @@ const footerLinks = {
     { name: 'Changelog', href: '/changelog' }
   ],
   Legal: [
-    { name: 'MIT License', href: 'https://github.com/your-repo/nextjs-starter-mcp/blob/main/LICENSE' },
+    { name: 'MIT License', href: 'https://github.com/Bendako/next-starter-mcp-landing-page/blob/main/LICENSE' },
     { name: 'Privacy Policy', href: '/privacy' },
     { name: 'Terms of Service', href: '/terms' },
     { name: 'Code of Conduct', href: '/code-of-conduct' }
@@ -28,9 +28,9 @@ const footerLinks = {
 }
 
 const socialLinks = [
-  { name: 'GitHub', icon: Github, href: 'https://github.com/your-repo/nextjs-starter-mcp' },
-  { name: 'Twitter', icon: Twitter, href: 'https://twitter.com/nextjs_mcp' },
-  { name: 'Discord', icon: MessageCircle, href: 'https://discord.gg/nextjs-starter-mcp' }
+  { name: 'GitHub', icon: Github, href: 'https://github.com/Bendako/next-starter-mcp-landing-page' },
+  { name: 'Twitter', icon: Twitter, href: 'https://twitter.com/bendako' },
+  { name: 'Discord', icon: MessageCircle, href: 'https://github.com/Bendako/next-starter-mcp-landing-page/discussions' }
 ]
 
 export default function Footer() {
