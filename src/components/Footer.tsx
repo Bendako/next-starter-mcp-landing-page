@@ -2,10 +2,10 @@ import { Github, Twitter, MessageCircle, Heart, Zap } from 'lucide-react'
 
 const footerLinks = {
   Product: [
-    { name: 'Features', href: '#features' },
-    { name: 'Templates', href: '#templates' },
-    { name: 'Documentation', href: '#documentation' },
-    { name: 'Examples', href: '#examples' }
+    { name: 'Demo', href: '#demo' },
+    { name: 'How It Works', href: '#how-it-works' },
+    { name: 'Code Examples', href: '#code-examples' },
+    { name: 'Documentation', href: '#documentation' }
   ],
   Community: [
     { name: 'GitHub', href: 'https://github.com/your-repo/nextjs-starter-mcp' },

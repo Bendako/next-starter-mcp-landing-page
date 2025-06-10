@@ -6,9 +6,9 @@ import Button from './ui/Button'
 import { cn } from '@/lib/utils'
 
 const navigation = [
-  { name: 'Features', href: '#features' },
-  { name: 'Documentation', href: '#documentation' },
-  { name: 'Templates', href: '#templates' },
+  { name: 'Demo', href: '#demo' },
+  { name: 'How It Works', href: '#how-it-works' },
+  { name: 'Examples', href: '#code-examples' },
   { name: 'GitHub', href: 'https://github.com', external: true },
 ]
 
