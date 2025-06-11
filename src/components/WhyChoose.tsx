@@ -184,11 +184,7 @@ export default function WhyChoose() {
             <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
               Join thousands of developers who have already accelerated their Next.js development with our powerful automation tools and Claude AI integration.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="group">
-                Get Started with Claude
-                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </Button>
+            <div className="flex justify-center">
               <Button variant="outline" size="lg">
                 View Live Examples
               </Button>

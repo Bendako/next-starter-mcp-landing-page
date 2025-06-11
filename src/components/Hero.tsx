@@ -63,11 +63,7 @@ export default function Hero() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" className="group">
-              Get Started with Claude
-              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </Button>
+          <div className="flex justify-center">
             <Button 
               variant="outline" 
               size="lg" 
