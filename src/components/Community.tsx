@@ -21,14 +21,14 @@ const resources = [
     icon: Github,
     title: 'Source Code',
     description: 'View the source code, report issues, and contribute',
-    link: 'https://github.com/your-repo/nextjs-starter-mcp',
+    link: 'https://github.com/Bendako/next-starter-script',
     color: 'bg-slate-100 text-slate-600'
   },
   {
     icon: MessageCircle,
     title: 'Discussions',
     description: 'Ask questions, share ideas, and connect with the community',
-    link: 'https://github.com/your-repo/nextjs-starter-mcp/discussions',
+    link: 'https://github.com/Bendako/next-starter-script/discussions',
     color: 'bg-green-100 text-green-600'
   },
   {

@@ -26,7 +26,7 @@ export default function Installation() {
       id: 'install-mcp',
       title: 'Install MCP Server',
       description: 'Clone and set up the Next.js Starter MCP server',
-      code: `git clone https://github.com/your-repo/nextjs-starter-mcp.git
+      code: `git clone https://github.com/Bendako/next-starter-script.git
 cd nextjs-starter-mcp
 npm install
 npm run build`,

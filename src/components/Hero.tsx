@@ -68,7 +68,7 @@ export default function Hero() {
               variant="outline" 
               size="lg" 
               className="group"
-              onClick={() => window.open('https://github.com/Bendako/next-starter-mcp-landing-page', '_blank')}
+              onClick={() => window.open('https://github.com/Bendako/next-starter-script', '_blank')}
             >
               <Github className="mr-2 h-5 w-5" />
               View on GitHub

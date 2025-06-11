@@ -8,7 +8,7 @@ const navigation = [
   { name: 'Demo', href: '#demo' },
   { name: 'How It Works', href: '#how-it-works' },
   { name: 'Examples', href: '#code-examples' },
-  { name: 'GitHub', href: 'https://github.com/Bendako/next-starter-mcp-landing-page', external: true },
+          { name: 'GitHub', href: 'https://github.com/Bendako/next-starter-script', external: true },
 ]
 
 export default function Header() {
