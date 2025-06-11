@@ -1,6 +1,5 @@
-import { Clock, Shield, Zap, Users, Code, Award, ArrowRight } from 'lucide-react'
+import { Clock, Shield, Zap, Users, Code, Award } from 'lucide-react'
 import { Card } from './ui/Card'
-import Button from './ui/Button'
 
 const benefits = [
   {
@@ -175,22 +174,7 @@ export default function WhyChoose() {
 
 
 
-        {/* CTA Section */}
-        <div className="text-center">
-          <Card className="p-12 bg-gradient-to-br from-primary-50 via-white to-secondary-50 border-2 border-primary-100">
-            <h3 className="text-2xl font-bold text-slate-900 mb-4">
-              Ready to Transform Your Development Workflow?
-            </h3>
-            <p className="text-lg text-slate-600 mb-8 max-w-2xl mx-auto">
-              Join thousands of developers who have already accelerated their Next.js development with our powerful automation tools and Claude AI integration.
-            </p>
-            <div className="flex justify-center">
-              <Button variant="outline" size="lg">
-                View Live Examples
-              </Button>
-            </div>
-          </Card>
-        </div>
+
       </div>
     </section>
   )
