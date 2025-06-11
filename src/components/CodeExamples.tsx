@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { Terminal, MessageSquare, Copy, Check } from 'lucide-react'
 import { Card } from './ui/Card'
-import Button from './ui/Button'
 
 const scriptExamples = [
   {
@@ -238,27 +237,7 @@ export default function CodeExamples() {
           </div>
         )}
 
-        {/* Quick Start Section */}
-        <div className="text-center mt-16">
-          <div className="bg-white rounded-lg p-8 shadow-sm border border-slate-200 max-w-4xl mx-auto">
-            <h3 className="text-2xl font-bold text-slate-900 mb-4">
-              Ready to Get Started?
-            </h3>
-            <p className="text-slate-600 mb-8">
-              Choose your preferred method and start building your Next.js application in minutes
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg">
-                <Terminal className="mr-2 h-5 w-5" />
-                Download Script
-              </Button>
-              <Button variant="outline" size="lg">
-                <MessageSquare className="mr-2 h-5 w-5" />
-                Setup Claude Integration
-              </Button>
-            </div>
-          </div>
-        </div>
+
       </div>
     </section>
   )
