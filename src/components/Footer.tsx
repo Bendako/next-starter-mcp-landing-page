@@ -1,10 +1,9 @@
 import { Github, Linkedin, MessageCircle, Heart, Zap } from 'lucide-react'
 
 const footerLinks = {
-  Product: [
-    { name: 'Demo', href: '#demo' },
-    { name: 'How It Works', href: '#how-it-works' },
-    { name: 'Code Examples', href: '#code-examples' },
+      Product: [
+      { name: 'See In Action', href: '#see-in-action' },
+      { name: 'Why Choose', href: '#why-choose' },
     { name: 'Documentation', href: '#documentation' }
   ],
   Community: [

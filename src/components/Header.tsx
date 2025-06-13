@@ -5,9 +5,8 @@ import { Menu, X, Github, Zap } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navigation = [
-  { name: 'Demo', href: '#demo' },
-  { name: 'How It Works', href: '#how-it-works' },
-  { name: 'Examples', href: '#code-examples' },
+  { name: 'See In Action', href: '#see-in-action' },
+  { name: 'Why Choose', href: '#why-choose' },
           { name: 'GitHub', href: 'https://github.com/Bendako/next-starter-script', external: true },
 ]
 
