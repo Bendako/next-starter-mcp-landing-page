@@ -8,7 +8,7 @@ This project creates a modern, professional landing page to showcase the Next.js
 
 - **Modern Design**: Built with Next.js 14+ and Tailwind CSS
 - **Accurate content**: Install steps and template list mirror the product README on `main` of `Bendako/next-starter-script`
-- **Legal pages**: `/privacy` and `/terms` are drafts with `[PLACEHOLDERS]` to complete
+- **Legal pages**: `/privacy` and `/terms` (not reviewed by a lawyer)
 - **Pricing**: placeholder section until checkout is live
 
 ## Tech Stack
