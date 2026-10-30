@@ -92,4 +92,5 @@ jspm_packages/
 .tern-port
 
 # Vercel
-.vercel *.tsbuildinfo
+.vercel
+*.tsbuildinfo

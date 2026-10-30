@@ -13,7 +13,7 @@ export default function Hero() {
         <div className="text-center max-w-4xl mx-auto">
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary-100 text-primary-700 text-sm font-medium mb-8">
             <Bot className="h-4 w-4 mr-2" />
-            Works from your terminal or any local MCP client
+            Works from your terminal or Claude via MCP
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 text-balance">

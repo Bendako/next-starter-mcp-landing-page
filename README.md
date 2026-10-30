@@ -36,4 +36,4 @@ npm run build
 
 ## Project Structure
 
-See `landing-page-spec.md` for the complete specification and design requirements.
+Next.js App Router app: pages live in `src/app`, sections in `src/components`.
