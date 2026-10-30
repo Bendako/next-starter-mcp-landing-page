@@ -1,7 +1,9 @@
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import SeeInAction from '@/components/SeeInAction'
-import WhyChoose from '@/components/WhyChoose'
+import WhatsIncluded from '@/components/WhatsIncluded'
+import Installation from '@/components/Installation'
+import Pricing from '@/components/Pricing'
 import Footer from '@/components/Footer'
 
 export default function Home() {
@@ -10,8 +12,10 @@ export default function Home() {
       <Header />
       <Hero />
       <SeeInAction />
-      <WhyChoose />
+      <WhatsIncluded />
+      <Installation />
+      <Pricing />
       <Footer />
     </main>
   )
-} 
+}
