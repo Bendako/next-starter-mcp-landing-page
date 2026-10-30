@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import LegalPage from '@/components/LegalPage'
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy (draft) - Next.js Starter MCP',
+  title: 'Privacy Policy - Next.js Starter MCP',
   robots: { index: false, follow: true },
 }
 
@@ -13,14 +13,14 @@ export default function PrivacyPage() {
         <h2>1. Who we are</h2>
         <p>
           This website promotes the Next.js Starter MCP kit, a digital product made by btd (&ldquo;we&rdquo;, &ldquo;us&rdquo;).
-          Contact: [CONTACT EMAIL].
+          Contact: <a href="mailto:bendk1994@gmail.com" className="underline">bendk1994@gmail.com</a>.
         </p>
       </section>
 
       <section>
         <h2>2. What this website collects</h2>
         <p>
-          This website is a static information page. At the time of this draft it has no user accounts and no sign-up forms, and it does
+          This website is a static information page. At the time of writing it has no user accounts and no sign-up forms, and it does
           not run analytics or advertising scripts of its own.
         </p>
         <p>
@@ -55,7 +55,7 @@ export default function PrivacyPage() {
       <section>
         <h2>5. How we use information</h2>
         <ul>
-          <li>To respond to support requests sent to [CONTACT EMAIL].</li>
+          <li>To respond to support requests sent to <a href="mailto:bendk1994@gmail.com" className="underline">bendk1994@gmail.com</a>.</li>
           <li>To deliver the product and communicate about your order.</li>
           <li>To keep the website and the product secure and working.</li>
         </ul>
@@ -65,7 +65,7 @@ export default function PrivacyPage() {
         <h2>6. Retention and your rights</h2>
         <p>
           We keep information only as long as needed for the purposes above or as required by law. Depending on where you live you may
-          have rights to access, correct or delete your personal data. To exercise them, contact [CONTACT EMAIL]. For data held by Polar,
+          have rights to access, correct or delete your personal data. To exercise them, contact <a href="mailto:bendk1994@gmail.com" className="underline">bendk1994@gmail.com</a>. For data held by Polar,
           you can also contact Polar.
         </p>
       </section>
