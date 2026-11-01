@@ -1,14 +1,13 @@
-export const REPO_URL = 'https://github.com/Bendako/next-starter-script'
-export const REPO_BLOB = `${REPO_URL}/blob/main`
+const PRICING_URL = '/#pricing'
 
 export const links = {
-  repo: REPO_URL,
-  changelog: `${REPO_BLOB}/CHANGELOG.md`,
-  troubleshooting: `${REPO_BLOB}/README.md#troubleshooting`,
-  mcpSetup: `${REPO_BLOB}/mcp-server/README.md`,
-  contributing: `${REPO_BLOB}/CONTRIBUTING.md`,
-  issues: `${REPO_URL}/issues`,
-  linkedin: 'https://linkedin.com/in/bendako',
+  repo: PRICING_URL,
+  changelog: PRICING_URL,
+  troubleshooting: PRICING_URL,
+  mcpSetup: PRICING_URL,
+  contributing: PRICING_URL,
+  issues: PRICING_URL,
+  linkedin: PRICING_URL,
 }
 
 export const nav = [

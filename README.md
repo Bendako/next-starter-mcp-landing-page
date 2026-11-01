@@ -7,7 +7,7 @@ Landing page for the Next.js Starter MCP kit: a Bash generator and a local stdio
 This project creates a modern, professional landing page to showcase the Next.js Starter MCP tool, featuring:
 
 - **Modern Design**: Built with Next.js 14+ and Tailwind CSS
-- **Accurate content**: Install steps and template list mirror the product README on `main` of `Bendako/next-starter-script`
+- **Accurate content**: Install steps and template list mirror the product README
 - **Legal pages**: `/privacy` and `/terms` (not reviewed by a lawyer)
 - **Pricing**: placeholder section until checkout is live
 
