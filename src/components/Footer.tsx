@@ -1,6 +1,5 @@
 import Link from 'next/link'
-import { Linkedin, Zap } from 'lucide-react'
-import { links } from '@/lib/site'
+import { Zap } from 'lucide-react'
 
 type FooterLink = { name: string; href: string; external?: boolean }
 
@@ -10,15 +9,6 @@ const footerLinks: Record<string, FooterLink[]> = {
     { name: "What's included", href: '/#whats-included' },
     { name: 'Installation', href: '/#installation' },
     { name: 'Pricing', href: '/#pricing' },
-  ],
-  Resources: [
-    { name: 'Changelog', href: links.changelog, external: true },
-    { name: 'Troubleshooting', href: links.troubleshooting, external: true },
-    { name: 'MCP client setup', href: links.mcpSetup, external: true },
-  ],
-  Support: [
-    { name: 'GitHub Issues', href: links.issues, external: true },
-    { name: 'Contributing', href: links.contributing, external: true },
   ],
   Legal: [
     { name: 'Privacy Policy', href: '/privacy' },
@@ -41,15 +31,6 @@ export default function Footer() {
             <p className="text-slate-400 mb-6 max-w-sm text-sm">
               A local Next.js starter kit: a Bash generator and a stdio MCP server.
             </p>
-            <a
-              href={links.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex text-slate-400 hover:text-white transition-colors p-2 hover:bg-slate-800 rounded-lg"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="h-5 w-5" />
-            </a>
           </div>
 
           {Object.entries(footerLinks).map(([category, items]) => (
