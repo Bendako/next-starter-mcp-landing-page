@@ -47,10 +47,10 @@ expect() {
   local ok=1
   [ "$got" -eq "$want" ] || ok=0
   for needle in "$@"; do
-    printf '%s' "$out" | grep -qF -- "$needle" || ok=0
+    [[ $out == *"$needle"* ]] || ok=0
   done
   # Emails of non-allowlisted people must never be printed.
-  printf '%s' "$out" | grep -qF "$OTHER_EMAIL" && ok=0
+  [[ $out == *"$OTHER_EMAIL"* ]] && ok=0
   if [ "$ok" -eq 1 ]; then
     pass=$((pass + 1)); echo "ok   - $label (exit $got)"
   else
@@ -94,13 +94,45 @@ new_repo webflow-author
 commit "$repo" 'GitHub' "$WEBFLOW_EMAIL" "$BOT_NAME" "$BOT_EMAIL" 'feat: x'
 expect 'web-flow as author fails' 1 "$repo" 'author not in allowlist'
 
+# A trailer at the top of a very large message must still be caught. With
+# `git log | grep -q` under pipefail, grep exits early, git dies of SIGPIPE and
+# the trailer slips through.
+new_repo long-trailer-first
+awk 'BEGIN {
+  print "feat: x\n\nCo-authored-by: Some Person <p@example.org>\n"
+  for (i = 0; i < 6000; i++) print "filler line padding padding padding padding padding"
+}' > "$tmp/long-message.txt"
+(
+  cd "$repo" || exit 1
+  echo long >> file.txt
+  git add file.txt
+  GIT_AUTHOR_NAME=$BOT_NAME GIT_AUTHOR_EMAIL=$BOT_EMAIL GIT_COMMITTER_NAME=$BOT_NAME GIT_COMMITTER_EMAIL=$BOT_EMAIL \
+    git commit -q --no-gpg-sign --no-verify -F "$tmp/long-message.txt"
+)
+size=$(git -C "$repo" log -1 --format=%B | wc -c)
+if [ "$size" -ge 300000 ]; then
+  pass=$((pass + 1)); echo "ok   - long-message fixture is at least 300000 bytes ($size)"
+else
+  fail=$((fail + 1)); echo "FAIL - long-message fixture too small ($size bytes)"
+fi
+expect 'trailer-first message of 300 KB or more fails' 1 "$repo" 'Co-authored-by trailer'
+
+# An empty range fails closed.
+new_repo empty-range
+out=$(cd "$repo" && "$check" HEAD..HEAD 2>&1); got=$?
+if [ "$got" -eq 2 ] && [[ $out == *"no commits in range"* ]]; then
+  pass=$((pass + 1)); echo "ok   - empty range exits 2 (fails closed)"
+else
+  fail=$((fail + 1)); echo "FAIL - empty range exits 2 (exit $got)"; printf '%s\n' "$out" | sed 's/^/       /'
+fi
+
 # Only the offending commit in a multi-commit range is reported.
 new_repo multi
 commit "$repo" "$OTHER_NAME" "$OTHER_EMAIL" "$BOT_NAME" "$BOT_EMAIL" 'feat: bad'
 bad=$(git -C "$repo" rev-parse --short=8 HEAD)
 commit "$repo" "$BOT_NAME" "$BOT_EMAIL" "$BOT_NAME" "$BOT_EMAIL" 'feat: good'
 out=$(cd "$repo" && "$check" HEAD~2..HEAD 2>&1); got=$?
-if [ "$got" -eq 1 ] && printf '%s' "$out" | grep -qF "FAIL $bad:" && [ "$(printf '%s\n' "$out" | grep -c '^FAIL ')" -eq 1 ]; then
+if [ "$got" -eq 1 ] && [[ $out == *"FAIL $bad:"* ]] && [ "$(grep -c '^FAIL ' <<<"$out")" -eq 1 ]; then
   pass=$((pass + 1)); echo "ok   - only the offending commit is reported (exit $got)"
 else
   fail=$((fail + 1)); echo "FAIL - only the offending commit is reported (exit $got)"; printf '%s\n' "$out" | sed 's/^/       /'

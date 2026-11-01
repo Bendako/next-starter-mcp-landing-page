@@ -15,7 +15,8 @@
 #
 # Only commit metadata is read. File content is never inspected.
 # Emails of non-allowlisted identities are never printed.
-# Exit codes: 0 pass, 1 at least one violation, 2 usage or git error.
+# Exit codes: 0 pass, 1 at least one violation, 2 usage or git error or an
+# empty range (fails closed: a check that saw no commits proves nothing).
 set -u -o pipefail
 
 AUTHOR_ALLOWLIST='
@@ -55,6 +56,11 @@ if ! shas=$(git rev-list --reverse "$range" --); then
   exit 2
 fi
 
+if [ -z "$shas" ]; then
+  echo "error: no commits in range '$range'; refusing to pass an empty check" >&2
+  exit 2
+fi
+
 total=0
 failed=0
 for sha in $shas; do
@@ -63,7 +69,12 @@ for sha in $shas; do
   author=$(git log -1 --format=%ae "$sha")
   committer=$(git log -1 --format=%ce "$sha")
   broken=""
-  if git log -1 --format=%B "$sha" | grep -qiE '^[[:space:]]*co-authored-by:'; then
+  # Capture the message first: piping git into `grep -q` under pipefail lets
+  # grep exit early, git get SIGPIPE, and a long message slip through.
+  message=$(git log -1 --format=%B "$sha")
+  # `grep -c` reads all input, so there is no early exit and no SIGPIPE.
+  trailers=$(grep -ciE '^[[:space:]]*co-authored-by:' <<<"$message")
+  if [ "$trailers" -gt 0 ]; then
     broken="$broken  Co-authored-by trailer"
   fi
   in_list "$author" "$AUTHOR_ALLOWLIST" || broken="$broken  author not in allowlist"
