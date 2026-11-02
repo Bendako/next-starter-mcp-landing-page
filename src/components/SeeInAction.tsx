@@ -1,6 +1,5 @@
 import { Terminal, Bot, ArrowRight, Settings } from 'lucide-react'
 import { Card } from './ui/Card'
-import { links } from '@/lib/site'
 
 const dryRunCommand = 'bash ./create-next-starter.sh --dry-run --skip-clerk --skip-convex --template minimal -- my-app'
 
@@ -153,11 +152,7 @@ export default function SeeInAction() {
               ))}
             </dl>
             <p className="text-slate-500 text-sm mt-6">
-              Full option list: <code className="font-mono">bash ./create-next-starter.sh --help</code>. MCP client setup:{' '}
-              <a href={links.mcpSetup} target="_blank" rel="noopener noreferrer" className="text-primary-600 underline">
-                client configuration guide
-              </a>
-              .
+              Full option list: <code className="font-mono">bash ./create-next-starter.sh --help</code>.
             </p>
           </Card>
         </div>

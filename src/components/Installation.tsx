@@ -1,5 +1,4 @@
 import { Card } from './ui/Card'
-import { links } from '@/lib/site'
 
 function Code({ children }: { children: string }) {
   return (
@@ -99,25 +98,12 @@ npm run dev`}</Code>
               <Step n={3} title="Restart the client and check the tools">
                 <p>
                   The server should list <code className="font-mono">create_nextjs_app</code>, <code className="font-mono">dry_run</code>,{' '}
-                  <code className="font-mono">test_script</code> and <code className="font-mono">script_help</code>. Codex and Cursor
-                  examples are in the{' '}
-                  <a href={links.mcpSetup} target="_blank" rel="noopener noreferrer" className="text-primary-600 underline">
-                    client configuration guide
-                  </a>
-                  .
+                  <code className="font-mono">test_script</code> and <code className="font-mono">script_help</code>.
                 </p>
               </Step>
             </div>
           </Card>
         </div>
-
-        <p className="text-center text-slate-500 text-sm mt-8">
-          Stuck? See the{' '}
-          <a href={links.troubleshooting} target="_blank" rel="noopener noreferrer" className="text-primary-600 underline">
-            troubleshooting notes
-          </a>
-          .
-        </p>
       </div>
     </section>
   )
